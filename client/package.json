@@ -1,5 +1,5 @@
 {
-  "name": "fullstack-node-mongodb-angular",
+  "name": "client",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
