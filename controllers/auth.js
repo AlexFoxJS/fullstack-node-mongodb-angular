@@ -4,6 +4,7 @@ const keys = require('../config/keys')
 const User = require('../models/User')
 const errorHandler = require('../utils/errorHandler')
 
+/** Авторизация пользователя */
 module.exports.login = async (req, res) => {
 	const candidate = await User.findOne({email: req.body.email})
 
@@ -27,10 +28,13 @@ module.exports.login = async (req, res) => {
 		}
 	} else {
 		// Пользователь не найден. Ошибка.
-		res.status(409)
+		res.status(409).json({
+			message: 'Пользователь не найден'
+		})
 	}
 }
 
+/** Регистрация нового пользователя */
 module.exports.register = async (req, res) => {
 	// email password
 	const candidate = await User.findOne({email: req.body.email})
@@ -53,7 +57,7 @@ module.exports.register = async (req, res) => {
 			await user.save()
 			res.status(201).json(user)
 		} catch (e) {
-			// Ощибка при создании нового пользователя
+			// Ошибка при создании нового пользователя
 			errorHandler(res, e)
 		}
 	}

@@ -11,12 +11,12 @@ router.get('/', passport.authenticate('jwt', {session: false}), controller.getAl
 router.get('/:id', passport.authenticate('jwt', {session: false}), controller.getById)
 
 // localhost:5000/api/category/:id
-router.delete('/:id', controller.remove)
+router.delete('/:id', passport.authenticate('jwt', {session: false}), controller.remove)
+
+// localhost:5000/api/category/
+router.post('/', passport.authenticate('jwt', {session: false}), upload.single('image'), controller.create)
 
 // localhost:5000/api/category/:id
-router.post('/', upload.single('image'), controller.create)
-
-// localhost:5000/api/category/:id
-router.post('/:id', upload.single('image'), controller.update)
+router.post('/:id', passport.authenticate('jwt', {session: false}), upload.single('image'), controller.update)
 
 module.exports = router

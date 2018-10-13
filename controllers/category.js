@@ -2,7 +2,7 @@ const Category = require('../models/Category')
 const Position = require('../models/Position')
 const errorHandler = require('../utils/errorHandler')
 
-
+/** */
 module.exports.getAll = async (req, res) => {
 	try {
 		const category = await Category.find({userId: req.user.id})
@@ -12,6 +12,7 @@ module.exports.getAll = async (req, res) => {
 	}
 }
 
+/** */
 module.exports.getById = async (req, res) => {
 	try {
 		const category = await Category.findById(req.params.id)
@@ -21,6 +22,7 @@ module.exports.getById = async (req, res) => {
 	}
 }
 
+/** */
 module.exports.remove = async (req, res) => {
 	try {
 		await Category.remove({_id: req.params.id})
@@ -33,20 +35,23 @@ module.exports.remove = async (req, res) => {
 	}
 }
 
+/** */
 module.exports.create = async (req, res) => {
-	try {
-		const category = await new Category({
-			name: req.body.name,
-			imageURL: req.body.imageURL,
-			userId: req.body.userId,
-		}).save()
+	const category = new Category({
+		name: req.body.name,
+		userId: req.user.id,
+		imageURL: req.file ? req.file.path : "",
+	})
 
+	try {
+		await category.save()
 		res.status(201).json(category)
 	} catch (e) {
 		errorHandler(e)
 	}
 }
 
+/** */
 module.exports.update = async (req, res) => {
 	try {
 		const category = await Category.findByOneAndUpdate(
