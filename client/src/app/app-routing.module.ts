@@ -1,15 +1,22 @@
+/** */
 import {NgModule} from '@angular/core'
 import {RouterModule, Routes} from '@angular/router'
-import {PageLoginComponent} from "./page-login/page-login.component"
-import {AppLayoutComponent} from "./shared/layouts/app-layout/app-layout.component";
-import {AuthLayoutComponent} from "./shared/layouts/auth-layout/auth-layout.component";
 
+/** */
+import {PageLoginComponent} from "./page-login/page-login.component"
+import {AppLayoutComponent} from "./shared/layouts/app-layout/app-layout.component"
+import {AuthLayoutComponent} from "./shared/layouts/auth-layout/auth-layout.component"
+import {PageRegistrationComponent} from "./page-registration/page-registration.component"
+
+/** */
 const routes: Routes = [
   {
     path: '',
     component: AuthLayoutComponent,
     children: [
+      {path: '', redirectTo: '/login', pathMatch: 'full'},
       {path: 'login', component: PageLoginComponent},
+      {path: 'registration', component: PageRegistrationComponent},
     ]
   },
   {
@@ -18,11 +25,11 @@ const routes: Routes = [
   },
 ]
 
+/** */
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 
-export class AppRoutingModule {
-  
-}
+/** */
+export class AppRoutingModule {}
