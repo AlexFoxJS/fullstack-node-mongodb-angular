@@ -5,14 +5,16 @@ import {AppComponent} from './app.component'
 import {PageLoginComponent} from './page-login/page-login.component'
 import {AppRoutingModule} from "./app-routing.module"
 import { AppLayoutComponent } from './shared/layouts/app-layout/app-layout.component'
-import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component'
+import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
+import { PageRegistrationComponent } from './page-registration/page-registration.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     PageLoginComponent,
     AppLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    PageRegistrationComponent
   ],
   imports: [
     BrowserModule,
