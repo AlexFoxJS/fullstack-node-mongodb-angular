@@ -1,26 +1,64 @@
-import {Component, OnInit} from '@angular/core'
+/** Библиотеки - Системные */
+import {Component, OnDestroy, OnInit} from '@angular/core'
 import {FormGroup, FormControl, Validators} from '@angular/forms'
+import {ActivatedRoute, Params, Router} from '@angular/router'
+import {Subscription} from 'rxjs'
 
+/** Библиотеки - Сторонние */
+import {NotifierService} from 'angular-notifier'
+
+/** Сервисы */
+import {AuthService} from '../shared/services/auth.service'
 
 @Component({
   selector: 'app-page-login',
   templateUrl: './page-login.component.html',
   styleUrls: ['./page-login.component.css']
 })
-export class PageLoginComponent implements OnInit {
+export class PageLoginComponent implements OnInit, OnDestroy {
 
-  form: FormGroup
+  public form: FormGroup
+  public subscribe: Subscription
+  private readonly notifier: NotifierService
 
-  constructor() {}
+  constructor(
+    private auth: AuthService,
+    private notifierService: NotifierService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {
+    this.notifier = notifierService
+  }
 
   ngOnInit() {
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     })
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['registration']) {
+        // Пользователь зарегестрировался
+      } else if (params['accessDenied']) {
+        // Необходима авторизация
+      }
+    })
   }
 
+  ngOnDestroy() {
+    if (this.subscribe) this.subscribe.unsubscribe()
+  }
+
+  /** Метод отправки данных формы авторизации */
   onSubmit() {
+    this.form.disable()
+
+    this.subscribe = this.auth.login(this.form.value).subscribe(
+      () => this.router.navigate(['/overview']),
+      () => {
+        this.notifier.notify('error', 'Не удалось авторизоватся')
+        this.form.enable()
+      }
+    )
 
   }
 
