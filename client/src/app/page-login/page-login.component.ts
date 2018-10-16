@@ -51,7 +51,6 @@ export class PageLoginComponent implements OnInit, OnDestroy {
     if (this.subscribe) this.subscribe.unsubscribe()
   }
 
-  /** Метод отправки данных формы авторизации */
   onSubmit() {
     this.form.disable()
 
