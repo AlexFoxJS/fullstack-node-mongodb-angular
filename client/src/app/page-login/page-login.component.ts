@@ -23,18 +23,20 @@ export class PageLoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private auth: AuthService,
-    private notifierService: NotifierService,
-    private router: Router,
     private route: ActivatedRoute,
+    private router: Router,
+    private notifierService: NotifierService,
   ) {
     this.notifier = notifierService
   }
 
   ngOnInit() {
+
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     })
+
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registration']) {
         // Пользователь зарегестрировался
@@ -42,6 +44,7 @@ export class PageLoginComponent implements OnInit, OnDestroy {
         // Необходима авторизация
       }
     })
+
   }
 
   ngOnDestroy() {
@@ -53,9 +56,12 @@ export class PageLoginComponent implements OnInit, OnDestroy {
     this.form.disable()
 
     this.subscribe = this.auth.login(this.form.value).subscribe(
-      () => this.router.navigate(['/overview']),
       () => {
-        this.notifier.notify('error', 'Не удалось авторизоватся')
+        this.notifier.notify('success', 'Успешная авторизация')
+        this.router.navigate(['/overview'])
+      },
+      () => {
+        this.notifier.notify('error', 'Ошибка авторизации')
         this.form.enable()
       }
     )

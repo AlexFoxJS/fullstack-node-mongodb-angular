@@ -19,7 +19,6 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  /** Авторизация */
   login(user: User): Observable<{token: string}> {
     return this.http.post<{token: string}>('/api/auth/login', user)
       .pipe(
@@ -28,6 +27,10 @@ export class AuthService {
           this.setToken(token)
         })
       )
+  }
+
+  registration(user: User): Observable<User> {
+    return this.http.post<User>('/api/auth/register', user)
   }
 
   setToken(token: string) {
@@ -45,11 +48,6 @@ export class AuthService {
   logOut() {
     this.setToken(null)
     localStorage.clear()
-  }
-
-  /** Регистрация */
-  registration() {
-
   }
 
 }
