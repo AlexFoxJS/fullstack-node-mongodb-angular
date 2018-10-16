@@ -2,7 +2,7 @@
 import {NgModule} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
-import {HttpClientModule} from '@angular/common/http'
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'
 
 /** Бибилиотеки - Дочерние*/
 import {NotifierModule, NotifierOptions} from 'angular-notifier'
@@ -15,7 +15,10 @@ import {AppLayoutComponent} from './shared/layouts/app-layout/app-layout.compone
 import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component'
 import {PageRegistrationComponent} from './page-registration/page-registration.component'
 
-/** Custom angular notifier options */
+/** Интерсепторы */
+import {TokenInterceptor} from './shared/classes/token.interceptor'
+
+/** Настройки пакета - "notifier" */
 const customNotifierOptions: NotifierOptions = {
   position: {
     horizontal: {
@@ -74,7 +77,13 @@ const customNotifierOptions: NotifierOptions = {
     NotifierModule,
     NotifierModule.withConfig(customNotifierOptions),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: TokenInterceptor,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 
