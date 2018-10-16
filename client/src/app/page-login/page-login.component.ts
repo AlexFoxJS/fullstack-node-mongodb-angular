@@ -42,6 +42,8 @@ export class PageLoginComponent implements OnInit, OnDestroy {
         this.notifier.notify('success', 'Успешная регистрация')
       } else if (params['accessDenied']) {
         this.notifier.notify('error', 'Ошибка авторизации')
+      } else if (params['tokenExpired']) {
+        this.notifier.notify('warning', 'Срок действия токена истек, необходима повторная авторизация')
       }
     })
 
