@@ -39,9 +39,9 @@ export class PageLoginComponent implements OnInit, OnDestroy {
 
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registration']) {
-        // Пользователь зарегестрировался
+        this.notifier.notify('success', 'Успешная регистрация')
       } else if (params['accessDenied']) {
-        // Необходима авторизация
+        this.notifier.notify('error', 'Ошибка авторизации')
       }
     })
 
