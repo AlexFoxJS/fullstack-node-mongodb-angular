@@ -7,21 +7,25 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'
 /** Бибилиотеки - Дочерние*/
 import {NotifierModule, NotifierOptions} from 'angular-notifier'
 
-/** Компоненты */
+/** Системные файлы */
 import {AppComponent} from './app.component'
-import {PageLoginComponent} from './pages/page-login/page-login.component'
 import {AppRoutingModule} from './app-routing.module'
-import {AppLayoutComponent} from './shared/layouts/app-layout/app-layout.component'
-import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component'
-import {PageRegistrationComponent} from './pages/page-registration/page-registration.component'
 
 /** Интерсепторы */
-import {TokenInterceptor} from './shared/classes/token.interceptor';
-import {PageOverviewComponent} from './pages/page-overview/page-overview.component';
-import { PageAnalyticsComponent } from './pages/page-analytics/page-analytics.component';
-import { PageHistoryComponent } from './pages/page-history/page-history.component';
-import { PageOrderComponent } from './pages/page-order/page-order.component';
-import { PageCategoriesComponent } from './pages/page-categories/page-categories.component'
+import {TokenInterceptor} from './shared/classes/token.interceptor'
+
+/** Layout's - Глобальные */
+import {AppLayoutComponent} from './shared/layouts/app-layout/app-layout.component'
+import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component'
+
+/** Layout's - Отдельных страниц */
+import {PageOrderComponent} from './pages/page-order/page-order.component'
+import {PageLoginComponent} from './pages/page-login/page-login.component'
+import {PageHistoryComponent} from './pages/page-history/page-history.component'
+import {PageOverviewComponent} from './pages/page-overview/page-overview.component'
+import {PageAnalyticsComponent} from './pages/page-analytics/page-analytics.component'
+import {PageCategoriesComponent} from './pages/page-categories/page-categories.component'
+import {PageRegistrationComponent} from './pages/page-registration/page-registration.component'
 
 /** Настройки пакета - "notifier" */
 const customNotifierOptions: NotifierOptions = {
