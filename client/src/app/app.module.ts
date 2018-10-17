@@ -20,7 +20,8 @@ import {TokenInterceptor} from './shared/classes/token.interceptor';
 import {PageOverviewComponent} from './pages/page-overview/page-overview.component';
 import { PageAnalyticsComponent } from './pages/page-analytics/page-analytics.component';
 import { PageHistoryComponent } from './pages/page-history/page-history.component';
-import { PageOrderComponent } from './pages/page-order/page-order.component'
+import { PageOrderComponent } from './pages/page-order/page-order.component';
+import { PageCategoriesComponent } from './pages/page-categories/page-categories.component'
 
 /** Настройки пакета - "notifier" */
 const customNotifierOptions: NotifierOptions = {
@@ -74,7 +75,8 @@ const customNotifierOptions: NotifierOptions = {
     PageOverviewComponent,
     PageAnalyticsComponent,
     PageHistoryComponent,
-    PageOrderComponent
+    PageOrderComponent,
+    PageCategoriesComponent
   ],
   imports: [
     BrowserModule,
