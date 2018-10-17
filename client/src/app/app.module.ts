@@ -18,7 +18,8 @@ import {PageRegistrationComponent} from './pages/page-registration/page-registra
 /** Интерсепторы */
 import {TokenInterceptor} from './shared/classes/token.interceptor';
 import {PageOverviewComponent} from './pages/page-overview/page-overview.component';
-import { PageAnalyticsComponent } from './pages/page-analytics/page-analytics.component'
+import { PageAnalyticsComponent } from './pages/page-analytics/page-analytics.component';
+import { PageHistoryComponent } from './pages/page-history/page-history.component'
 
 /** Настройки пакета - "notifier" */
 const customNotifierOptions: NotifierOptions = {
@@ -70,7 +71,8 @@ const customNotifierOptions: NotifierOptions = {
     AuthLayoutComponent,
     PageRegistrationComponent,
     PageOverviewComponent,
-    PageAnalyticsComponent
+    PageAnalyticsComponent,
+    PageHistoryComponent
   ],
   imports: [
     BrowserModule,
