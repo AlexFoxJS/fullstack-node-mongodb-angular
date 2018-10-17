@@ -2,12 +2,18 @@
 import {NgModule} from '@angular/core'
 import {RouterModule, Routes} from '@angular/router'
 
-/** Компоненты - Layout's */
-import {PageLoginComponent} from './pages/page-login/page-login.component'
+/** Layout's - Глобальные */
 import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component'
-import {PageRegistrationComponent} from './pages/page-registration/page-registration.component'
 import {AppLayoutComponent} from './shared/layouts/app-layout/app-layout.component'
+
+/** Layout's - Отдельных страниц */
+import {PageLoginComponent} from './pages/page-login/page-login.component'
+import {PageOrderComponent} from './pages/page-order/page-order.component'
+import {PageHistoryComponent} from './pages/page-history/page-history.component'
 import {PageOverviewComponent} from './pages/page-overview/page-overview.component'
+import {PageAnalyticsComponent} from './pages/page-analytics/page-analytics.component'
+import {PageCategoriesComponent} from './pages/page-categories/page-categories.component'
+import {PageRegistrationComponent} from './pages/page-registration/page-registration.component'
 
 /** Защитники роутов */
 import {AuthGuard} from './shared/classes/auth.guard'
@@ -28,6 +34,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'overview', component: PageOverviewComponent},
+      {path: 'analytics', component: PageAnalyticsComponent},
+      {path: 'history', component: PageHistoryComponent},
+      {path: 'order', component: PageOrderComponent},
+      {path: 'categories', component: PageCategoriesComponent},
     ],
   },
 ]
@@ -37,4 +47,5 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
