@@ -9,15 +9,16 @@ import {NotifierModule, NotifierOptions} from 'angular-notifier'
 
 /** Компоненты */
 import {AppComponent} from './app.component'
-import {PageLoginComponent} from './page-login/page-login.component'
+import {PageLoginComponent} from './pages/page-login/page-login.component'
 import {AppRoutingModule} from './app-routing.module'
 import {AppLayoutComponent} from './shared/layouts/app-layout/app-layout.component'
 import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component'
-import {PageRegistrationComponent} from './page-registration/page-registration.component'
+import {PageRegistrationComponent} from './pages/page-registration/page-registration.component'
 
 /** Интерсепторы */
 import {TokenInterceptor} from './shared/classes/token.interceptor';
-import {PageOverviewComponent} from './page-overview/page-overview.component'
+import {PageOverviewComponent} from './pages/page-overview/page-overview.component';
+import { PageAnalyticsComponent } from './pages/page-analytics/page-analytics.component'
 
 /** Настройки пакета - "notifier" */
 const customNotifierOptions: NotifierOptions = {
@@ -68,7 +69,8 @@ const customNotifierOptions: NotifierOptions = {
     AppLayoutComponent,
     AuthLayoutComponent,
     PageRegistrationComponent,
-    PageOverviewComponent
+    PageOverviewComponent,
+    PageAnalyticsComponent
   ],
   imports: [
     BrowserModule,

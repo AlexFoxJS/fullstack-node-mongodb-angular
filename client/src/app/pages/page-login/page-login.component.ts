@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs'
 import {NotifierService} from 'angular-notifier'
 
 /** Сервисы */
-import {AuthService} from '../shared/services/auth.service'
+import {AuthService} from '../../shared/services/auth.service'
 
 @Component({
   selector: 'app-page-login',
