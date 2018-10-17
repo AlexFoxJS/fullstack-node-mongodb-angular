@@ -33,7 +33,7 @@ export class AuthService {
     return this.http.post<User>('/api/auth/register', user)
   }
 
-  setToken(token: string) {
+  setToken(token: string): void {
     this.token = token
   }
 
@@ -45,7 +45,7 @@ export class AuthService {
     return !!this.token
   }
 
-  logOut() {
+  logOut(): void {
     this.setToken(null)
     localStorage.clear()
   }

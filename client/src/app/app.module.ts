@@ -16,7 +16,8 @@ import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.comp
 import {PageRegistrationComponent} from './page-registration/page-registration.component'
 
 /** Интерсепторы */
-import {TokenInterceptor} from './shared/classes/token.interceptor'
+import {TokenInterceptor} from './shared/classes/token.interceptor';
+import {PageOverviewComponent} from './page-overview/page-overview.component'
 
 /** Настройки пакета - "notifier" */
 const customNotifierOptions: NotifierOptions = {
@@ -66,7 +67,8 @@ const customNotifierOptions: NotifierOptions = {
     PageLoginComponent,
     AppLayoutComponent,
     AuthLayoutComponent,
-    PageRegistrationComponent
+    PageRegistrationComponent,
+    PageOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -82,11 +84,10 @@ const customNotifierOptions: NotifierOptions = {
       provide: HTTP_INTERCEPTORS,
       multi: true,
       useClass: TokenInterceptor,
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })
 
 export class AppModule {
 }
-

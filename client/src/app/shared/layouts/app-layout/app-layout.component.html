@@ -1,4 +1,28 @@
-<!-- Layout "Авторизации" -->
-<p>
-  app-layout works!
-</p>
+<!-- Layout АВТОРИЗОВАННОГО пользователя -->
+
+<!--SIDEBAR-->
+<ul class="sidenav sidenav-fixed a-sidenav">
+  <h4>Newborn</h4>
+  <li ngClass="bold" *ngFor="let link of sidebarNavigationLinks" routerLinkActive="active">
+    <a [routerLink]="[link.url]" ngClass="waves-effect waves-orange">{{link.text}}</a>
+  </li>
+  <li class="bold last">
+    <a href="#" class="waves-effect waves-orange" (click)="logout($event)">Выйти</a>
+  </li>
+</ul>
+
+<!--CONTENT-->
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
+
+<!--Floating button-->
+<div class="fixed-action-btn" #materialFloatingButton>
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">add</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating green"><i class="material-icons">assignment</i></a></li>
+    <li><a class="btn-floating blue"><i class="material-icons">list</i></a></li>
+  </ul>
+</div>
