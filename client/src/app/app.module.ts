@@ -26,6 +26,7 @@ import {PageOverviewComponent} from './pages/page-overview/page-overview.compone
 import {PageAnalyticsComponent} from './pages/page-analytics/page-analytics.component'
 import {PageCategoriesComponent} from './pages/page-categories/page-categories.component'
 import {PageRegistrationComponent} from './pages/page-registration/page-registration.component'
+import {LoaderComponent} from './shared/components/loader/loader.component'
 
 /** Настройки пакета - "notifier" */
 const customNotifierOptions: NotifierOptions = {
@@ -80,7 +81,8 @@ const customNotifierOptions: NotifierOptions = {
     PageAnalyticsComponent,
     PageHistoryComponent,
     PageOrderComponent,
-    PageCategoriesComponent
+    PageCategoriesComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

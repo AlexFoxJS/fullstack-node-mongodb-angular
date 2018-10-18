@@ -1,3 +1,21 @@
-<p>
-  page-categories works!
-</p>
+<div class="page-title">
+  <h4>Категории</h4>
+  <button
+    class="waves-effect waves-light btn grey darken-1"
+    routerLink="/categories/new"
+  >
+    Добавить категорию
+  </button>
+</div>
+
+<div class="row" *ngIf="!categoriesLoading">
+  <div class="col s12">
+    <div class="collection">
+      <a ngClass="collection-item" routerLinkActive="active" *ngFor="let category of categories">
+        {{category.name}}
+      </a>
+    </div>
+  </div>
+</div>
+
+<app-loader *ngIf="categoriesLoading"></app-loader>
