@@ -15,6 +15,9 @@ import {PageAnalyticsComponent} from './pages/page-analytics/page-analytics.comp
 import {PageCategoriesComponent} from './pages/page-categories/page-categories.component'
 import {PageRegistrationComponent} from './pages/page-registration/page-registration.component'
 
+/** */
+import {CategoriesFormComponent} from './pages/page-categories/components/categories-form/categories-form.component'
+
 /** Защитники роутов */
 import {AuthGuard} from './shared/classes/auth.guard'
 
@@ -38,6 +41,8 @@ const routes: Routes = [
       {path: 'history', component: PageHistoryComponent},
       {path: 'order', component: PageOrderComponent},
       {path: 'categories', component: PageCategoriesComponent},
+      {path: 'categories/new', component: CategoriesFormComponent},
+      {path: 'categories/:id', component: CategoriesFormComponent},
     ],
   },
 ]

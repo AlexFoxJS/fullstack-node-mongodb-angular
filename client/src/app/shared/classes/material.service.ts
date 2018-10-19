@@ -7,7 +7,13 @@ import {ElementRef, Injectable} from '@angular/core'
 })
 
 export class MaterialService {
+
   static initilizeMaterialFloatingButton(ref: ElementRef) {
     M.FloatingActionButton.init(ref.nativeElement)
   }
+
+  static updateTextInput() {
+    M.updateTextFields()
+  }
+
 }
