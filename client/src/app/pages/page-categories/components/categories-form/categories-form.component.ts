@@ -1,6 +1,6 @@
 /** Библиотеки - Системные */
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
-import {ActivatedRoute, Params} from '@angular/router'
+import {ActivatedRoute, Params, Router} from '@angular/router'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 
 /** Библиотеки - Дочерние */
@@ -37,6 +37,7 @@ export class CategoriesFormComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private categoriesService: CategoriesService,
     private notifierService: NotifierService,
   ) {
@@ -82,6 +83,20 @@ export class CategoriesFormComponent implements OnInit {
       }
     )
 
+  }
+
+  /** */
+  deleteCategory() {
+    const desigion = window.confirm(`Вы уверены что хотите удалить категорию "${this.category.name}"`)
+
+    if (desigion) {
+      this.categoriesService.deleteCategory(this.category._id)
+        .subscribe(
+          () => this.notifier.notify('success', `Категория "${this.category.name}" успешно удалена`),
+          () => this.notifier.notify('error', `Ошибка при удалении категории "${this.category.name}"`),
+          () => this.router.navigate(['/categories'])
+        )
+    }
   }
 
   /** */

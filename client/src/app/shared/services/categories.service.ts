@@ -7,6 +7,7 @@ import {Observable} from 'rxjs'
 
 /** */
 import {Category} from '../interfaces/category'
+import {Message} from '../interfaces/message'
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,11 @@ export class CategoriesService {
     formData.append('name', name)
 
     return this.http.patch<Category>(`/api/category/${id}`, formData)
+  }
+
+  /** */
+  deleteCategory(id: string): Observable<Message> {
+    return this.http.delete<Message>(`/api/category/${id}`)
   }
 
 }
