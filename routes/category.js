@@ -17,6 +17,6 @@ router.delete('/:id', passport.authenticate('jwt', {session: false}), controller
 router.post('/', passport.authenticate('jwt', {session: false}), upload.single('image'), controller.create)
 
 // localhost:5000/api/category/:id
-router.post('/:id', passport.authenticate('jwt', {session: false}), upload.single('image'), controller.update)
+router.patch('/:id', passport.authenticate('jwt', {session: false}), upload.single('image'), controller.update)
 
 module.exports = router

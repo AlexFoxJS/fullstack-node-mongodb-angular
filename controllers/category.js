@@ -54,11 +54,12 @@ module.exports.create = async (req, res) => {
 /** */
 module.exports.update = async (req, res) => {
 	try {
-		const category = await Category.findByOneAndUpdate(
+		const category = await Category.findByIdAndUpdate(
 			{_id: req.params.id},
-			{$set: req.body},
+			{...req.body, imageURL: req.file ? req.file.path : ''},
 			{new: true},
 		)
+		console.log([req])
 		res.status(200).json(category)
 	} catch (e) {
 		errorHandler(e)
