@@ -5,7 +5,7 @@
     {{isNew ? 'Добавить категорию' : 'Редактирование категории'}}
   </h4>
   <span>
-    <button class="btn btn-small red" (click)="deleteCategory()">
+    <button class="btn btn-small red" (click)="deleteCategory()" *ngIf="category">
       <i class="material-icons">delete</i>
     </button>
   </span>
