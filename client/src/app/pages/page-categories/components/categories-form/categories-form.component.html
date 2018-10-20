@@ -36,9 +36,16 @@
 
     <!-- Превью категории -->
     <div>
+      <input
+        type="file"
+        ngClass="dn"
+        (change)="onFileUpload($event)"
+        #inputFile>
       <button
         type="button"
         class="waves-effect waves-light btn orange lighten-2 mb2"
+        (click)="triggerInputFileClick()"
+        [disabled]="form.disabled"
       >
         <i class="material-icons left">backup</i>
         Загрузить изображение
@@ -59,7 +66,10 @@
   </form>
 
   <div class="col s12 l4 center">
-    <img class="responsive-img" style="height: 200px" src="cake.jpg">
+    <img
+      ngClass="responsive-img h200px"
+      [src]="imagePreview ? imagePreview : 'https://via.placeholder.com/200x200'"
+    >
   </div>
 </div>
 

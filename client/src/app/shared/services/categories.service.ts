@@ -8,7 +8,6 @@ import {Observable} from 'rxjs'
 /** */
 import {Category} from '../interfaces/category'
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,12 +17,36 @@ export class CategoriesService {
   constructor(private http: HttpClient) {
   }
 
+  /** */
   fetchCategories(): Observable<Category[]> {
     return this.http.get<Category[]>('/api/category')
   }
 
+  /** */
   getCategoryById(id: string): Observable<Category> {
     return this.http.get<Category>(`/api/category/${id}`)
+  }
+
+  /** */
+  createCategory(name: string, image?: File): Observable<Category> {
+    const formData = new FormData()
+
+    if (image) formData.append('image', image, image.name)
+
+    formData.append('name', name)
+
+    return this.http.post<Category>('/api/category', formData)
+  }
+
+  /** */
+  updateCategory(id: string, name: string, image?: File): Observable<Category> {
+    const formData = new FormData()
+
+    if (image) formData.append('image', image, image.name)
+
+    formData.append('name', name)
+
+    return this.http.patch<Category>(`/api/category/${id}`, formData)
   }
 
 }
