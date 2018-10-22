@@ -1,7 +1,7 @@
 export interface Position {
-  _id?: String,
-  name: String,
-  cost: Number,
-  userId?: String,
-  categoryId: String,
+  _id?: string,
+  name: string,
+  cost: number,
+  userId?: string,
+  categoryId: string,
 }

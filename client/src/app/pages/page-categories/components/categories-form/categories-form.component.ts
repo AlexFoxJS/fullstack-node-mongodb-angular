@@ -79,7 +79,7 @@ export class CategoriesFormComponent implements OnInit {
         this.form.enable()
       },
       error => {
-        this.notifier.notify('error', error.error.message)
+        this.notifier.notify('error', error.message)
       }
     )
 
@@ -135,6 +135,7 @@ export class CategoriesFormComponent implements OnInit {
       this.form.enable()
     }, error => {
       this.notifier.notify('error', 'Ошибка при отправке формы')
+      console.error(error.message)
       this.form.enable()
     })
   }

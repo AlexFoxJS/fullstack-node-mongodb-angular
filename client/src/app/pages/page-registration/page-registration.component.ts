@@ -50,8 +50,9 @@ export class PageRegistrationComponent implements OnInit, OnDestroy {
           }
         })
       },
-      () => {
+      error => {
         this.notifier.notify('error', 'Ошибка регистрации')
+        console.error(error.message)
       }
     )
   }

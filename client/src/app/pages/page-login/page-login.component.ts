@@ -61,8 +61,9 @@ export class PageLoginComponent implements OnInit, OnDestroy {
         this.notifier.notify('success', 'Успешная авторизация')
         this.router.navigate(['/overview'])
       },
-      () => {
+      error => {
         this.notifier.notify('error', 'Ошибка авторизации')
+        console.error(error.message)
         this.form.enable()
       }
     )

@@ -1,68 +1,109 @@
-<div class="row">
-  <div class="col s12">
-    <div class="page-subtitle">
+<div ngClass="row">
+  <div ngClass="col s12">
+    <div ngClass="page-subtitle">
+      <!-- -->
       <h4>Позиции:</h4>
+      <!-- -->
       <button
         ngClass="waves-effect waves-light btn grey darken-1 btn-small"
-        (click)="openModalCreatePosition()"
+        (click)="openNewPositionModal()"
       >
         Добавить позицию
       </button>
     </div>
 
+
+    <!-- -->
     <div *ngIf="!loading; else loader">
-      <div class="collection" *ngIf="positions.length > 0; else empty">
+      <div ngClass="collection" *ngIf="positions.length > 0; else empty">
+        <!-- -->
         <a
           ngClass="collection-item collection-item-icon"
+          tabindex="0"
+          role="button"
           *ngFor="let position of positions"
-          (click)="openSelectPosition(position)"
+          (keypress)="openSelectPositionModal(position)"
+          (click)="openSelectPositionModal(position)"
         >
-          <span>
-            {{position.name}} <strong>{{position.cost}} руб.</strong>
-          </span>
-          <span>
-            <i class="material-icons">delete</i>
-          </span>
+          <span>{{position.name}} <strong>{{position.cost}} руб.</strong></span>
+          <span (click)="deletePosition($event, position)"><i ngClass="material-icons">delete</i></span>
         </a>
       </div>
     </div>
 
+    <!-- -->
     <ng-template #loader>
       <app-loader></app-loader>
     </ng-template>
 
+    <!-- -->
     <ng-template #empty>
-      <div class="center">
+      <div ngClass="center">
         В категории нет позиций
       </div>
     </ng-template>
   </div>
 </div>
 
-<div class="modal" #modalCreate>
-  <div class="modal-content">
-    <h4 class="mb1">Добавить позицию</h4>
-    <div class="input-field">
-      <input id="pos-name" type="text" required>
-      <label for="pos-name">Название</label>
+<!-- -->
+<form [formGroup]="form" (ngSubmit)="onSubmmit()">
+  <div ngClass="modal" #modalCreate>
+    <!-- -->
+    <div ngClass="modal-content">
+      <!-- -->
+      <h4 ngClass="mb1">Добавить позицию</h4>
+      <!-- -->
+      <div ngClass="input-field">
+        <input
+          formControlName="name"
+          id="pos-name"
+          type="text"
+          [ngClass]="{'invalid': form.get('name').invalid && form.get('name').touched}"
+        >
+        <label for="pos-name">Название</label>
+        <span
+          ngClass="helper-text red-text"
+          *ngIf="form.get('name').invalid && form.get('name').touched"
+        >
+          Название позиции не может быть пустым.
+        </span>
+      </div>
+      <!-- -->
+      <div ngClass="input-field">
+        <input
+          formControlName="cost"
+          id="pos-cost"
+          type="number"
+          [ngClass]="{'invalid': form.get('cost').invalid && form.get('cost').touched}"
+        >
+        <label for="pos-cost">Цена</label>
+        <span
+          ngClass="helper-text red-text"
+          *ngIf="form.get('name').invalid && form.get('name').touched"
+        >
+          Минимальная цена не может быть меньше 1.
+        </span>
+      </div>
     </div>
-    <div class="input-field">
-      <input id="pos-cost" type="text" required>
-      <label for="pos-cost">Цена</label>
+    <!-- -->
+    <div ngClass="modal-footer">
+      <!-- -->
+      <button
+        ngClass="modal-action waves-effect waves-black btn-flat"
+        type="button"
+        (click)="closeModal()"
+        [disabled]="form.disabled"
+      >
+        Отмена
+      </button>
+      <!-- -->
+      <button
+        ngClass="modal-action btn waves-effect"
+        type="submit"
+        [disabled]="form.disabled || form.invalid"
+      >
+        Сохранить
+      </button>
     </div>
   </div>
-  <div class="modal-footer">
-    <button
-      ngClass="modal-action waves-effect waves-black btn-flat"
-      type="button"
-      (click)="closeModalCreatePosition()"
-    >
-      Отмена
-    </button>
-    <button
-      ngClass="modal-action btn waves-effect"
-    >
-      Сохранить
-    </button>
-  </div>
-</div>
+</form>

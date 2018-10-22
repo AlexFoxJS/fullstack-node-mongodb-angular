@@ -32,7 +32,7 @@ module.exports.create = async (req, res) => {
 /** */
 module.exports.remove = async (req, res) => {
 	try {
-		await Position.remove({_id: req.params.id})
+		await Position.remove({_id: req.body.id})
 		res.status(200).json({
 			message: 'Позиция успешно удалена.',
 		})
@@ -44,7 +44,7 @@ module.exports.remove = async (req, res) => {
 /** */
 module.exports.update = async (req, res) => {
 	try {
-		const positions = await Position.findByOneAndUpdate(
+		const positions = await Position.remove(
 			{_id: req.params.id}, // Находим объект в базе
 			{$set: req.body}, // Меняем данные найденого объекта
 			{new: true}, // Перезаписываем объект в базе
