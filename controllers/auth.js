@@ -9,25 +9,25 @@ module.exports.login = async (req, res) => {
 	const candidate = await User.findOne({email: req.body.email})
 
 	if (candidate) {
-		// Пользователь найден. Проверка пароля.
+		/** Пользователь найден. Проверка пароля. */
 		const passwordResult = bcryptjs.compareSync(req.body.password, candidate.password)
 
 		if (passwordResult) {
-			// Пароли совпадают. Генерация токкена.
+			/** Пароли совпадают. Генерация токкена. */
 			const token = jwt.sign({
 				email: candidate.email,
 				userId: candidate._id,
-			}, keys.jwt, {expiresIn: 60 * 60})
+			}, keys.jwt, {expiresIn: 60 * 60 * 6})
 
 			res.status(200).json({token: `Bearer ${token}`})
 		} else {
-			// Неверный пароль.
+			/** Неверный пароль. */
 			res.status(401).json({
 				message: 'Неверный пароль'
 			})
 		}
 	} else {
-		// Пользователь не найден. Ошибка.
+		/** Пользователь не найден. Ошибка. */
 		res.status(409).json({
 			message: 'Пользователь не найден'
 		})
@@ -36,16 +36,16 @@ module.exports.login = async (req, res) => {
 
 /** Регистрация нового пользователя */
 module.exports.register = async (req, res) => {
-	// email password
+	/** email password */
 	const candidate = await User.findOne({email: req.body.email})
 
 	if (candidate) {
-		// Пользователь с таким "email" уже зарегестрирован
+		/** Пользователь с таким "email" уже зарегестрирован */
 		res.status(409).json({
 			message: 'Пользователь с таким "email" уже существует'
 		})
 	} else {
-		// Регистрация нового пользователя
+		/** Регистрация нового пользователя */
 		const salt = bcryptjs.genSaltSync(10) // Генерируем локальный хеш
 		const password = req.body.password // Берем пароль пользователся
 		const user = new User({
@@ -57,7 +57,7 @@ module.exports.register = async (req, res) => {
 			await user.save()
 			res.status(201).json(user)
 		} catch (e) {
-			// Ошибка при создании нового пользователя
+			/** Ошибка при создании нового пользователя */
 			errorHandler(res, e)
 		}
 	}
