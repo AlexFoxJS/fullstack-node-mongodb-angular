@@ -29,7 +29,6 @@ export class PageOrderComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isRoot = this.router.url === '/order'
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        console.log('event', event)
         this.isRoot = this.router.url === '/order'
       }
     })
