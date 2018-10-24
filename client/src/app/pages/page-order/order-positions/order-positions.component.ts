@@ -3,8 +3,11 @@ import {Component, OnInit} from '@angular/core'
 import {ActivatedRoute, Params} from '@angular/router'
 
 /** Дочерние библиотеки */
-import {Observable} from 'rxjs'
+import {Observable, Subscription} from 'rxjs'
 import {switchMap, map} from 'rxjs/operators'
+
+/** Библиотеки - Сторонние */
+import {NotifierService} from 'angular-notifier'
 
 /** Сервисы */
 import {PositionsService} from '../../../shared/services/positions.service'
@@ -21,12 +24,15 @@ import {Position} from '../../../shared/interfaces/position'
 export class OrderPositionsComponent implements OnInit {
 
   public positions$: Observable<Position[]>
+  private readonly notifier: NotifierService
 
   constructor(
     private router: ActivatedRoute,
     private positionsService: PositionsService,
     private orderService: OrderService,
+    private notifierService: NotifierService,
   ) {
+    this.notifier = notifierService
   }
 
   ngOnInit() {
@@ -47,6 +53,7 @@ export class OrderPositionsComponent implements OnInit {
 
   addToOrder(position: Position) {
     this.orderService.add(position)
+    this.notifier.notify('success', `Позиция "${position.name}" успешно добавлена.`)
   }
 
 }

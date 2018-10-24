@@ -10,6 +10,7 @@
     ngClass="waves-effect btn grey darken-1"
     *ngIf="!isRoot"
     (click)="openModalExploreOrder()"
+    [disabled]="order.list.length === 0"
   >
     Завершить
   </button>
@@ -23,32 +24,47 @@
   <!---->
   <div ngClass="modal-content">
     <h4 ngClass="mb1">Ваш заказ</h4>
-    <!---->
-    <table ngClass="highlight">
+    <div *ngIf="order.list.length !== 0; else empty">
       <!---->
-      <thead>
-      <tr>
-        <th>Название</th>
-        <th>Количество</th>
-        <th>Цена</th>
-        <th></th>
-      </tr>
-      </thead>
+      <table ngClass="highlight">
+        <!---->
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Количество</th>
+            <th>Цена</th>
+            <th></th>
+          </tr>
+        </thead>
+        <!---->
+        <tbody>
+          <tr *ngFor="let item of order.list">
+            <td>{{item.name}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.cost * item.quantity}}</td>
+            <td>
+              <i
+                ngClass="material-icons pointer"
+                (click)="removePosition(item)"
+              >
+                delete
+              </i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <!---->
-      <tbody>
-      <tr>
-        <td>Alvin</td>
-        <td>3</td>
-        <td>$0.87</td>
-        <td><i ngClass="material-icons pointer">delete</i></td>
-      </tr>
-      </tbody>
-    </table>
-    <!---->
-    <div ngClass="order-summary">
-      <p>Общая стоимость <strong>22 231 руб.</strong></p>
+      <div ngClass="order-summary">
+        <p>Общая стоимость <strong>{{order.price}} руб.</strong></p>
+      </div>
     </div>
+    <ng-template #empty>
+      <div class="center">
+        Нет выбранных позиций
+      </div>
+    </ng-template>
   </div>
+
   <!---->
   <div ngClass="modal-footer">
     <!---->
@@ -62,6 +78,7 @@
     <button
       ngClass="modal-action btn waves-effect"
       (click)="submitModalExploreOrder()"
+      [disabled]="order.list.length === 0"
     >
       Подтвердить
     </button>

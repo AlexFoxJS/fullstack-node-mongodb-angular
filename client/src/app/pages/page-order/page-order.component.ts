@@ -6,6 +6,9 @@ import {NavigationEnd, Router} from '@angular/router'
 import {MaterialInstance, MaterialService} from '../../shared/classes/material.service'
 import {OrderService} from './services/order.service'
 
+/** Интерфейсы */
+import {OrderPosition} from '../../shared/interfaces/order-position'
+
 @Component({
   selector: 'app-page-order',
   templateUrl: './page-order.component.html',
@@ -20,8 +23,8 @@ export class PageOrderComponent implements OnInit, OnDestroy, AfterViewInit {
   public isRoot: boolean
 
   constructor(
+    public order: OrderService,
     private router: Router,
-    private order: OrderService
   ) {
   }
 
@@ -48,6 +51,10 @@ export class PageOrderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   cancelModalExploreOrder() {
     this.modalExploreOrder.close()
+  }
+
+  removePosition(orderPosition: OrderPosition) {
+    this.order.remove(orderPosition)
   }
 
   submitModalExploreOrder() {
