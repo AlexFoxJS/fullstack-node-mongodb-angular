@@ -5,7 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'
 
 /** Бибилиотеки - Дочерние*/
-import {NotifierModule, NotifierOptions} from 'angular-notifier'
+import {NotifierModule} from 'angular-notifier'
 
 /** Системные файлы */
 import {AppComponent} from './app.component'
@@ -29,48 +29,11 @@ import {PageRegistrationComponent} from './pages/page-registration/page-registra
 import {LoaderComponent} from './shared/components/loader/loader.component'
 import {CategoriesFormComponent} from './pages/page-categories/components/categories-form/categories-form.component'
 import {PositionsFormComponent} from './pages/page-categories/components/positions-form/positions-form.component'
+import {OrderCategoriesComponent} from './pages/page-order/order-categories/order-categories.component'
+import {OrderPositionsComponent} from './pages/page-order/order-positions/order-positions.component'
 
-/** Настройки пакета - "notifier" */
-const customNotifierOptions: NotifierOptions = {
-  position: {
-    horizontal: {
-      position: 'left',
-      distance: 12
-    },
-    vertical: {
-      position: 'bottom',
-      distance: 12,
-      gap: 10
-    }
-  },
-  theme: 'material',
-  behaviour: {
-    autoHide: 5000,
-    onClick: 'hide',
-    onMouseover: 'pauseAutoHide',
-    showDismissButton: true,
-    stacking: 4
-  },
-  animations: {
-    enabled: true,
-    show: {
-      preset: 'slide',
-      speed: 300,
-      easing: 'ease'
-    },
-    hide: {
-      preset: 'fade',
-      speed: 300,
-      easing: 'ease',
-      offset: 50
-    },
-    shift: {
-      speed: 300,
-      easing: 'ease'
-    },
-    overlap: 150
-  }
-}
+/** Импорты конфигов */
+import {notifierOptions} from './config/notifier'
 
 @NgModule({
   declarations: [
@@ -86,7 +49,9 @@ const customNotifierOptions: NotifierOptions = {
     PageCategoriesComponent,
     LoaderComponent,
     CategoriesFormComponent,
-    PositionsFormComponent
+    PositionsFormComponent,
+    OrderCategoriesComponent,
+    OrderPositionsComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +60,7 @@ const customNotifierOptions: NotifierOptions = {
     ReactiveFormsModule,
     HttpClientModule,
     NotifierModule,
-    NotifierModule.withConfig(customNotifierOptions),
+    NotifierModule.withConfig(notifierOptions),
   ],
   providers: [
     {

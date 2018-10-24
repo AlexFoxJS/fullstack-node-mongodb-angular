@@ -1,3 +1,48 @@
-<p>
-  page-order works!
-</p>
+<!--  -->
+<div ngClass="page-title">
+  <h4>Заказ</h4>
+  <button ngClass="waves-effect btn grey darken-1 modal-trigger" data-target="explore-order">
+    Завершить
+  </button>
+</div>
+
+<!--  -->
+<router-outlet></router-outlet>
+
+<!--  -->
+<div id="explore-order" ngClass="modal modal-fixed-footer">
+  <!---->
+  <div ngClass="modal-content">
+    <h4 ngClass="mb1">Ваш заказ</h4>
+    <!---->
+    <table ngClass="highlight">
+      <!---->
+      <thead>
+      <tr>
+        <th>Название</th>
+        <th>Количество</th>
+        <th>Цена</th>
+        <th></th>
+      </tr>
+      </thead>
+      <!---->
+      <tbody>
+      <tr>
+        <td>Alvin</td>
+        <td>3</td>
+        <td>$0.87</td>
+        <td><i ngClass="material-icons pointer">delete</i></td>
+      </tr>
+      </tbody>
+    </table>
+    <!---->
+    <div ngClass="order-summary">
+      <p>Общая стоимость <strong>22 231 руб.</strong></p>
+    </div>
+  </div>
+  <!---->
+  <div ngClass="modal-footer">
+    <a href="#!" ngClass="modal-action waves-effect waves-black btn-flat">Отмена</a>
+    <button ngClass="modal-action btn waves-effect">Подтвердить</button>
+  </div>
+</div>

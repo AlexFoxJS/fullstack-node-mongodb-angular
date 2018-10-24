@@ -15,8 +15,10 @@ import {PageAnalyticsComponent} from './pages/page-analytics/page-analytics.comp
 import {PageCategoriesComponent} from './pages/page-categories/page-categories.component'
 import {PageRegistrationComponent} from './pages/page-registration/page-registration.component'
 
-/** */
+/** Layout's - Дочерние страницы */
 import {CategoriesFormComponent} from './pages/page-categories/components/categories-form/categories-form.component'
+import {OrderCategoriesComponent} from './pages/page-order/order-categories/order-categories.component'
+import {OrderPositionsComponent} from './pages/page-order/order-positions/order-positions.component'
 
 /** Защитники роутов */
 import {AuthGuard} from './shared/classes/auth.guard'
@@ -39,7 +41,10 @@ const routes: Routes = [
       {path: 'overview', component: PageOverviewComponent},
       {path: 'analytics', component: PageAnalyticsComponent},
       {path: 'history', component: PageHistoryComponent},
-      {path: 'order', component: PageOrderComponent},
+      {path: 'order', component: PageOrderComponent, children: [
+          {path: '', component: OrderCategoriesComponent},
+          {path: ':id', component: OrderPositionsComponent},
+      ]},
       {path: 'categories', component: PageCategoriesComponent},
       {path: 'categories/new', component: CategoriesFormComponent},
       {path: 'categories/:id', component: CategoriesFormComponent},
