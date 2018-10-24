@@ -1,7 +1,16 @@
 <!--  -->
 <div ngClass="page-title">
-  <h4>Заказ</h4>
-  <button ngClass="waves-effect btn grey darken-1 modal-trigger" data-target="explore-order">
+  <h4 *ngIf="isRoot">Заказ</h4>
+  <h4 *ngIf="!isRoot">
+    <a [routerLink]="['/order']">Заказ</a>
+    <i ngClass="material-icons">keyboard_arrow_right</i>
+    Добавить продукцию
+  </h4>
+  <button
+    ngClass="waves-effect btn grey darken-1"
+    *ngIf="!isRoot"
+    (click)="openModalExploreOrder()"
+  >
     Завершить
   </button>
 </div>
@@ -10,7 +19,7 @@
 <router-outlet></router-outlet>
 
 <!--  -->
-<div id="explore-order" ngClass="modal modal-fixed-footer">
+<div #modalExploreOrder ngClass="modal modal-fixed-footer">
   <!---->
   <div ngClass="modal-content">
     <h4 ngClass="mb1">Ваш заказ</h4>
@@ -42,7 +51,19 @@
   </div>
   <!---->
   <div ngClass="modal-footer">
-    <a href="#!" ngClass="modal-action waves-effect waves-black btn-flat">Отмена</a>
-    <button ngClass="modal-action btn waves-effect">Подтвердить</button>
+    <!---->
+    <button
+      ngClass="modal-action waves-effect waves-black btn-flat"
+      (click)="cancelModalExploreOrder()"
+    >
+      Отмена
+    </button>
+    <!---->
+    <button
+      ngClass="modal-action btn waves-effect"
+      (click)="submitModalExploreOrder()"
+    >
+      Подтвердить
+    </button>
   </div>
 </div>
