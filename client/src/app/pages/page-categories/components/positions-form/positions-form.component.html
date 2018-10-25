@@ -26,7 +26,11 @@
           (click)="openSelectPositionModal(position)"
         >
           <span>{{position.name}} <strong>{{position.cost}} руб.</strong></span>
-          <span (click)="deletePosition($event, position)"><i ngClass="material-icons">delete</i></span>
+          <span (click)="deletePosition($event, position)">
+            <i ngClass="material-icons">
+              delete
+            </i>
+          </span>
         </a>
       </div>
     </div>
