@@ -42,6 +42,7 @@ export class PageHistoryComponent implements OnInit, OnDestroy, AfterViewInit {
   public loading: boolean = false
   public reloading: boolean = false
   public noMoreOrders: boolean = false
+  public filterOptions: object = {}
 
   private readonly notifier: NotifierService
 
@@ -69,8 +70,9 @@ export class PageHistoryComponent implements OnInit, OnDestroy, AfterViewInit {
   /** Метод получения списка заказов */
   private fetchOrders() {
     const params = {
+      ...this.filterOptions,
       offset: this.offset,
-      limit: this.limit
+      limit: this.limit,
     }
 
     this.subscription = this.ordersService.fetch(params).subscribe(
@@ -93,6 +95,20 @@ export class PageHistoryComponent implements OnInit, OnDestroy, AfterViewInit {
     this.offset += FILTER_STEP
     this.fetchOrders()
     this.loading = true
+  }
+
+  /** Применям фильтрация заказов */
+  applyFilter(filter: Filter) {
+    this.orders = []
+    this.offset = 0
+    this.filterOptions = filter
+    this.reloading = true
+    this.fetchOrders()
+  }
+
+  /** */
+  isFiltered(): boolean {
+    return Object.keys(this.filterOptions).length !== 0
   }
 
 }

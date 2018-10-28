@@ -6,7 +6,10 @@
     [attr.data-tooltip]="isFilterVisible ? 'Закрыть фильтр' : 'Открыть фильтр'"
     data-position="left"
     (click)="isFilterVisible = !isFilterVisible"
-    [ngClass]="{'active': isFilterVisible}"
+    [ngClass]="{
+      'active': isFilterVisible,
+      'red': isFiltered()
+    }"
     #filterTooltip
   >
     <i ngClass="material-icons">filter_list</i>
@@ -16,6 +19,7 @@
 <!-- Блок фильтрации заказов -->
 <app-history-filter
   *ngIf="isFilterVisible"
+  (onFilter)="applyFilter($event)"
 ></app-history-filter>
 
 <!--  -->
