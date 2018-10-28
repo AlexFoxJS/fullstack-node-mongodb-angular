@@ -1,34 +1,60 @@
-<!--CONTENT-->
-<!---->
+<!-- Шапка страницы вывода заказов -->
 <div ngClass="page-title">
   <h4>История заказов</h4>
   <button
-    [ngClass]="{
-      'btn btn-small': true,
-      'active': isFilterVisible
-    }"
+    class="btn btn-small"
     [attr.data-tooltip]="isFilterVisible ? 'Закрыть фильтр' : 'Открыть фильтр'"
     data-position="left"
     (click)="isFilterVisible = !isFilterVisible"
+    [ngClass]="{'active': isFilterVisible}"
     #filterTooltip
   >
     <i ngClass="material-icons">filter_list</i>
   </button>
 </div>
 
-<!---->
+<!-- Блок фильтрации заказов -->
 <app-history-filter
   *ngIf="isFilterVisible"
 ></app-history-filter>
 
-<!---->
-<app-history-list></app-history-list>
+<!--  -->
+<div *ngIf="!reloading; else reloadingBlock">
 
-<!---->
-<div ngClass="center mb2">
-  <button
-    ngClass="btn waves-effect grey darken-1 btn-small"
-  >
-    Загрузить еще
-  </button>
+  <!---->
+  <div *ngIf="orders.length > 0; else emptyOrderList">
+
+    <!-- Список заказов -->
+    <app-history-list
+      [orders]="orders"
+    ></app-history-list>
+
+    <!-- Контрол подгрузки заказов -->
+    <div ngClass="center mb2">
+      <button
+        ngClass="btn waves-effect grey darken-1 btn-small"
+        (click)="loadMoreOrders()"
+        *ngIf="!loading; else loader"
+        [disabled]="noMoreOrders"
+      >
+        Загрузить еще
+      </button>
+
+      <ng-template #loader>
+        <app-loader></app-loader>
+      </ng-template>
+    </div>
+
+  </div>
+
+  <ng-template #emptyOrderList>
+    <div class="center">
+      У вас пока нет заказов.
+    </div>
+  </ng-template>
+
 </div>
+
+<ng-template #reloadingBlock>
+  <app-loader></app-loader>
+</ng-template>
