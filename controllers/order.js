@@ -26,6 +26,7 @@ module.exports.getAll = async (req, res) => {
 		}
 	}
 
+	//
 	if (req.query.order) {
 		query.order = +req.query.order
 	}
@@ -45,8 +46,8 @@ module.exports.getAll = async (req, res) => {
 
 module.exports.create = async (req, res) => {
 	try {
-		const lastOrder = await Order.findOne({user: req.user.id}).sort({date: -1})
-		const maxOrder = lastOrder ? lastOrder : 0
+		const lastOrder = await Order.findOne({userId: req.user.id}).sort({date: -1})
+		const maxOrder = lastOrder ? lastOrder.order : 0
 		const order = await new Order({
 			list: req.body.list,
 			userId: req.user.id,
