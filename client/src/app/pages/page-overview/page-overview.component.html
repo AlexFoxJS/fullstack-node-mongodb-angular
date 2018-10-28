@@ -1,3 +1,63 @@
-<p>
-  page-overview works!
-</p>
+<!--  -->
+<div ngClass="page-title">
+  <h4>
+    Обзор за вчера (09.04.2018)
+    <i ngClass="material-icons black-text pointer">info_outline</i>
+  </h4>
+</div>
+
+<!--  -->
+<div ngClass="row">
+
+  <!--  -->
+  <div ngClass="col s12 l6">
+    <div ngClass="card light-blue lighten-2 white-text">
+      <div ngClass="card-content">
+        <span ngClass="card-title">Выручка:</span>
+        <h3>20 000 руб.</h3>
+        <h3 ngClass="green-text text-darken-2 m0 mb1">
+          <i ngClass="material-icons">arrow_upward</i>
+          26%
+        </h3>
+        <p>
+          Выручка вашего бизнеса вчера на 20% выше среднего: 5555 руб. в день
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!---->
+  <div ngClass="col s12 l6">
+    <div ngClass="card orange lighten-2 white-text">
+      <div ngClass="card-content">
+        <span ngClass="card-title">Заказы:</span>
+        <h3>200 зак.</h3>
+        <h3 ngClass="red-text m0 mb1">
+          <i ngClass="material-icons">arrow_downward</i>
+          26%
+        </h3>
+        <p>
+          Число заказов вчера на 26% ниже среднего значения: 3 зак. в день
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!--  -->
+<a id="menu" ngClass="waves-effect waves-light btn btn-floating">
+  <i ngClass="material-icons">info</i>
+</a>
+
+<!--  -->
+<div ngClass="tap-target" data-target="menu">
+  <div ngClass="tap-target-content">
+    <h5>Зачем нужна эта страница?</h5>
+    <p>
+      Страница “Обзор” покажет динамику продаж за предыдущий день.
+      Сравнение со средним значениями поможет вам понять,
+      как идут дела у Вашего бизнеса.
+    </p>
+  </div>
+</div>
