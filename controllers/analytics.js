@@ -59,17 +59,17 @@ module.exports.analytics = async (req, res) => {
 		const ordersMap = getOrdersMap(allOrders)
 		// Средний чек
 		const averageCheck = +(calculatePrice(allOrders) / Object.keys(ordersMap).length).toFixed(2)
-		//
+		// Данные для отрисовки графиков
 		const chart = Object.keys(ordersMap).map(label => {
 			// label == 28.10.2018
 			const gain = calculatePrice(ordersMap[label])
 			const order = ordersMap[label].length
 
-			return ({
+			return {
 				label,
 				gain,
 				order
-			})
+			}
 		})
 
 		res.status(200).json({
