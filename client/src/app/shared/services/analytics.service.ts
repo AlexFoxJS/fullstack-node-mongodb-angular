@@ -7,6 +7,7 @@ import {Observable} from "rxjs"
 
 /** Интерфейсы */
 import {OverviewPage} from '../interfaces/overview-page'
+import {AnalyticsPage} from '../interfaces/analytics-page'
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,14 @@ export class AnalyticsService {
   ) {
   }
 
+  /** Получение данных для вывода страницы "Обзор" */
   getOverviews(): Observable<OverviewPage> {
     return this.http.get<OverviewPage>('/api/analytics/overview')
   }
 
-  getAnalytics() {
-
+  /** Получение данных для вывода страницы "Аналитики" */
+  getAnalytics(): Observable<AnalyticsPage> {
+    return this.http.get<AnalyticsPage>('/api/analytics/analytics')
   }
 
 
