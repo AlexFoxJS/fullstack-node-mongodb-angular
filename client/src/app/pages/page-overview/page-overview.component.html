@@ -1,26 +1,45 @@
 <!--  -->
 <div ngClass="page-title">
   <h4>
-    Обзор за вчера (09.04.2018)
-    <i ngClass="material-icons black-text pointer">info_outline</i>
+    Обзор за вчера ({{yesterday | date:'dd.MM.yyyy'}})
+    <i
+      ngClass="material-icons black-text pointer"
+      (click)="showInfo()"
+    >
+      info_outline
+    </i>
   </h4>
 </div>
 
 <!--  -->
-<div ngClass="row">
+<div
+  ngClass="row"
+  *ngIf="data$ | async as data; else loader"
+>
 
   <!--  -->
   <div ngClass="col s12 l6">
     <div ngClass="card light-blue lighten-2 white-text">
       <div ngClass="card-content">
         <span ngClass="card-title">Выручка:</span>
-        <h3>20 000 руб.</h3>
-        <h3 ngClass="green-text text-darken-2 m0 mb1">
-          <i ngClass="material-icons">arrow_upward</i>
-          26%
+        <h3>{{data.gain.yesterday}} руб.</h3>
+        <h3
+          class="m0 mb1"
+          [ngClass]="{
+            'green-text text-darken-2': data.gain.isHigher,
+            'red-text': !data.gain.isHigher
+          }"
+        >
+          <i ngClass="material-icons">
+            {{data.gain.isHigher ? 'arrow_upward' : 'arrow_downward'}}
+          </i>
+          {{data.gain.percent}}%
         </h3>
         <p>
-          Выручка вашего бизнеса вчера на 20% выше среднего: 5555 руб. в день
+          Выручка вашего бизнеса вчера на
+          {{data.gain.percent}}%
+          {{data.gain.isHigher ? 'выше' : 'ниже'}}
+          среднего: {{data.gain.compare}} руб. в день
         </p>
       </div>
     </div>
@@ -31,13 +50,24 @@
     <div ngClass="card orange lighten-2 white-text">
       <div ngClass="card-content">
         <span ngClass="card-title">Заказы:</span>
-        <h3>200 зак.</h3>
-        <h3 ngClass="red-text m0 mb1">
-          <i ngClass="material-icons">arrow_downward</i>
-          26%
+        <h3>{{data.orders.yesterday}} зак.</h3>
+        <h3
+          class="m0 mb1"
+          [ngClass]="{
+            'green-text text-darken-2': data.orders.isHigher,
+            'red-text': !data.orders.isHigher
+          }"
+        >
+          <i ngClass="material-icons">
+            {{data.orders.isHigher ? 'arrow_upward' : 'arrow_downward'}}
+          </i>
+          {{data.orders.percent}}%
         </h3>
         <p>
-          Число заказов вчера на 26% ниже среднего значения: 3 зак. в день
+          Число заказов вчера на
+          {{data.orders.percent}}%
+          {{data.orders.isHigher ? 'выше' : 'ниже'}}
+          среднего значения: {{data.orders.compare}} зак. в день
         </p>
       </div>
     </div>
@@ -45,13 +75,16 @@
 
 </div>
 
-<!--  -->
-<a id="menu" ngClass="waves-effect waves-light btn btn-floating">
-  <i ngClass="material-icons">info</i>
-</a>
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
 
 <!--  -->
-<div ngClass="tap-target" data-target="menu">
+<div
+  ngClass="tap-target"
+  data-target="menu"
+  #tapTarget
+>
   <div ngClass="tap-target-content">
     <h5>Зачем нужна эта страница?</h5>
     <p>
