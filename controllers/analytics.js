@@ -5,9 +5,9 @@ const errorHandler = require('../utils/errorHandler')
 //
 module.exports.overview = async (req, res) => {
 	try {
-		const allOrders = await Order.find({userId: req.user.id}).sort(1)
+		const allOrders = await Order.find({userId: req.user.id}).sort({date: 1})
 		const ordersMap = getOrdersMap(allOrders)
-		const yesterdayOrders = ordersMap[moment().add(-1, 'd').format('DD.MM.YYYY')]
+		const yesterdayOrders = ordersMap[moment().add(-1, 'd').format('DD.MM.YYYY')] || []
 
 		// Общее количество заказов вчера
 		const yesterdayOrdersNumber = yesterdayOrders.length
@@ -23,7 +23,7 @@ module.exports.overview = async (req, res) => {
 		// Общая выручка
 		const totalGain = calculatePrice(allOrders)
 		// Выручка в день
-		const gainPerDay = (totalGain / daysNumber).toFixed(2)
+		const gainPerDay = totalGain / daysNumber
 		// Выручка в день
 		const yesterdayGain = calculatePrice(yesterdayOrders)
 		// Процент выручки
@@ -47,6 +47,7 @@ module.exports.overview = async (req, res) => {
 				isHigher: +ordersPercent > 0
 			}
 		})
+
 	} catch (e) {
 		errorHandler(e)
 	}
@@ -56,7 +57,7 @@ module.exports.analytics = (req, res) => {
 
 }
 
-//
+// Helper functions
 function getOrdersMap(orders = []) {
 	const daysOrders = {}
 	orders.forEach(order => {
