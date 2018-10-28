@@ -16,12 +16,13 @@
   <!---->
   <tr *ngFor="let order of orders">
     <td>{{order.order}}</td>
-    <td>{{order.date}}</td>
-    <td>{{order.date}}</td>
-    <td>{{order._id}} руб.</td>
+    <td>{{order.date | date:'dd.MM.yyyy'}}</td>
+    <td>{{order.date | date:'HH:mm:ss'}}</td>
+    <td>{{computeOrderPrice(order)}} руб.</td>
     <td>
       <button
         ngClass="btn btn-small grey darken-1"
+        (click)="selectOrder(order)"
       >
         <i ngClass="material-icons">open_in_new</i>
       </button>
@@ -30,33 +31,49 @@
   </tbody>
 </table>
 
-<!-- Modal window -->
-<div id="order-list" ngClass="modal modal-fixed-footer">
-  <div ngClass="modal-content">
-    <h4 ngClass="mb1">Заказ №5</h4>
+<!-- Modal Order -->
+<div ngClass="modal modal-fixed-footer" #modalOrder>
+
+  <div ngClass="modal-content" *ngIf="selectedOrder">
+    <!--  -->
+    <h4 ngClass="mb1">Заказ №{{selectedOrder.order}}</h4>
+
     <table ngClass="highlight">
+
+      <!--  -->
       <thead>
-      <tr>
-        <th>Название</th>
-        <th>Количество</th>
-        <th>Цена</th>
-      </tr>
+        <tr>
+          <th>Название</th>
+          <th>Количество</th>
+          <th>Цена</th>
+        </tr>
       </thead>
 
+      <!--  -->
       <tbody>
-      <tr>
-        <td>Alvin</td>
-        <td>3</td>
-        <td>$0.87</td>
-      </tr>
+        <tr *ngFor="let item of selectedOrder.list">
+          <td>{{item.name}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.cost}} руб.</td>
+        </tr>
       </tbody>
     </table>
+
+    <!--  -->
     <div ngClass="order-summary">
-      <p>Общая стоимость <strong>22 231 руб.</strong></p>
+      <p>Общая стоимость <strong>{{computeOrderPrice(selectedOrder)}} руб.</strong></p>
     </div>
   </div>
+
+  <!--  -->
   <div ngClass="modal-footer">
-    <button ngClass="modal-action waves-effect waves-black btn-flat">Закрыть</button>
+    <button
+      ngClass="modal-action waves-effect waves-black btn-flat"
+      (click)="closeModalOrder()"
+    >
+      Закрыть
+    </button>
   </div>
+
 </div>
 
