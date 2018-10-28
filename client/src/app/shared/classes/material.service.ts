@@ -41,32 +41,12 @@ export class MaterialService {
       format: 'dd.mm.yyyy',
       showClearBtn: true,
       onClose,
-      // i18n: {
-      //   monthsShort: [
-      //     'янв',
-      //     'фев',
-      //     'мар',
-      //     'апр',
-      //     'май',
-      //     'июн',
-      //     'июл',
-      //     'авг',
-      //     'сен',
-      //     'окт',
-      //     'ноя',
-      //     'дек'
-      //   ],
-      //   weekdaysShort: [
-      //     'Вс',
-      //     'Пн',
-      //     'Вт',
-      //     'Ср',
-      //     'Чт',
-      //     'Пт',
-      //     'Сб'
-      //   ]
-      // }
     })
+  }
+
+  /** */
+  static initTapTarget(ref: ElementRef): MaterialInstance {
+    return M.TapTarget.init(ref.nativeElement)
   }
 
 }
