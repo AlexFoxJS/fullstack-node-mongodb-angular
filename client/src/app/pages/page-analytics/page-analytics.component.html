@@ -3,19 +3,24 @@
   <h4>Аналитика</h4>
 </div>
 
-<!--  -->
-<div class="average-price">
-  <p>Средний чек <strong>1500 р.</strong></p>
+<div [style.display]="pending ? 'none' : 'block'">
+  <!--  -->
+  <div class="average-price">
+    <p>Средний чек <strong>{{averageCheck}} р.</strong></p>
+  </div>
+
+  <!--  -->
+  <div class="analytics-block pb3">
+    <h5>Выручка</h5>
+    <canvas #gainChart></canvas>
+  </div>
+
+  <!--  -->
+  <div class="analytics-block">
+    <h5>Заказы</h5>
+    <canvas #orderChart></canvas>
+  </div>
 </div>
 
 <!--  -->
-<div class="analytics-block pb3">
-  <h5>Выручка</h5>
-  <canvas></canvas>
-</div>
-
-<!--  -->
-<div class="analytics-block">
-  <h5>Заказы</h5>
-  <canvas></canvas>
-</div>
+<app-loader *ngIf="pending"></app-loader>
