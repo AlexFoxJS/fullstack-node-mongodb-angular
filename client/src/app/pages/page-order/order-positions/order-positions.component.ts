@@ -1,12 +1,12 @@
-/** Системные библиотеки */
+/** Модули - Системные */
 import {Component, OnInit} from '@angular/core'
 import {ActivatedRoute, Params} from '@angular/router'
 
-/** Дочерние библиотеки */
-import {Observable, Subscription} from 'rxjs'
+/** Модули - Дочерние */
+import {Observable} from 'rxjs'
 import {switchMap, map} from 'rxjs/operators'
 
-/** Библиотеки - Сторонние */
+/** Модули - Сторонние */
 import {NotifierService} from 'angular-notifier'
 
 /** Сервисы */

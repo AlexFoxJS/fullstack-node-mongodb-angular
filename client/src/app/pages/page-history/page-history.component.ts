@@ -1,10 +1,10 @@
-/** */
+/** Модули - Системные */
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core'
 
-/** */
+/** Модули - Дочерние */
 import {Subscription} from 'rxjs'
 
-/** */
+/** Модули - Сторонние */
 import {NotifierService} from 'angular-notifier'
 
 /**  */
@@ -16,7 +16,11 @@ import {OrdersService} from '../../shared/services/orders.service'
 /** */
 import {Order} from '../../shared/interfaces/order'
 
-/** */
+/** Интерфесы */
+import {Filter} from '../../shared/interfaces/filter'
+
+/** Константы */
+// TODO: Вынести в отдельный файл
 const FILTER_STEP = 2
 
 @Component({

@@ -1,13 +1,13 @@
-/** Библиотеки - Системные */
+/** Модули - Системные */
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core'
 import {ActivatedRoute, Params, Router} from '@angular/router'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 
-/** Библиотеки - Дочерние */
+/** Модули - Дочерние */
 import {switchMap} from 'rxjs/operators'
 import {of} from 'rxjs'
 
-/** Библиотеки - Сторонние */
+/** Модули - Сторонние */
 import {NotifierService} from 'angular-notifier'
 
 /** Сервисы */

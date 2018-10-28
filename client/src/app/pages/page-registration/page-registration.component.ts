@@ -1,10 +1,10 @@
-/** Библиотеки - Системные */
+/** Модули - Системные */
 import {Component, OnDestroy, OnInit} from '@angular/core'
 import {FormGroup, FormControl, Validators} from '@angular/forms'
-import {ActivatedRoute, Params, Router} from '@angular/router'
+import {Router} from '@angular/router'
 import {Subscription} from 'rxjs'
 
-/** Библиотеки - Сторонние */
+/** Модули - Сторонние */
 import {NotifierService} from 'angular-notifier'
 
 /** Сервисы */

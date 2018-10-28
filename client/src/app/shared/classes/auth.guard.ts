@@ -1,4 +1,4 @@
-/** Библиотеки - Системные */
+/** Модули - Системные */
 import {Injectable} from '@angular/core'
 import {CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router'
 import {Observable, of} from 'rxjs'
