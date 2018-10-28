@@ -14,16 +14,24 @@ export interface MaterialInstance {
 
 export class MaterialService {
 
+  /** */
   static initilizeMaterialFloatingButton(ref: ElementRef) {
     M.FloatingActionButton.init(ref.nativeElement)
   }
 
+  /** */
   static updateTextInput() {
     M.updateTextFields()
   }
 
+  /** */
   static initModal(ref: ElementRef) {
     return M.Modal.init(ref.nativeElement)
+  }
+
+  /** */
+  static initTooltip(ref: ElementRef) {
+    return M.Tooltip.init(ref.nativeElement)
   }
 
 }
