@@ -1,3 +1,34 @@
-<p>
-  page-history works!
-</p>
+<!--CONTENT-->
+<!---->
+<div ngClass="page-title">
+  <h4>История заказов</h4>
+  <button
+    [ngClass]="{
+      'btn btn-small': true,
+      'active': isFilterVisible
+    }"
+    [attr.data-tooltip]="isFilterVisible ? 'Закрыть фильтр' : 'Открыть фильтр'"
+    data-position="left"
+    (click)="isFilterVisible = !isFilterVisible"
+    #filterTooltip
+  >
+    <i ngClass="material-icons">filter_list</i>
+  </button>
+</div>
+
+<!---->
+<app-history-filter
+  *ngIf="isFilterVisible"
+></app-history-filter>
+
+<!---->
+<app-history-list></app-history-list>
+
+<!---->
+<div ngClass="center mb2">
+  <button
+    ngClass="btn waves-effect grey darken-1 btn-small"
+  >
+    Загрузить еще
+  </button>
+</div>
