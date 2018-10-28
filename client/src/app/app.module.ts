@@ -1,4 +1,4 @@
-/** Бибилиотеки - Системные*/
+/** Бибилиотеки - Системные */
 import {NgModule} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
@@ -26,11 +26,18 @@ import {PageOverviewComponent} from './pages/page-overview/page-overview.compone
 import {PageAnalyticsComponent} from './pages/page-analytics/page-analytics.component'
 import {PageCategoriesComponent} from './pages/page-categories/page-categories.component'
 import {PageRegistrationComponent} from './pages/page-registration/page-registration.component'
-import {LoaderComponent} from './shared/components/loader/loader.component'
 import {CategoriesFormComponent} from './pages/page-categories/components/categories-form/categories-form.component'
 import {PositionsFormComponent} from './pages/page-categories/components/positions-form/positions-form.component'
 import {OrderCategoriesComponent} from './pages/page-order/order-categories/order-categories.component'
 import {OrderPositionsComponent} from './pages/page-order/order-positions/order-positions.component'
+
+/** Компоненты - Общие */
+import {LoaderComponent} from './shared/components/loader/loader.component'
+
+/** Компоненты - Дочерние */
+import {HistoryFilterComponent} from './pages/page-history/components/history-filter/history-filter.component'
+import {HistoryListComponent} from './pages/page-history/components/history-list/history-list.component'
+
 
 /** Импорты конфигов */
 import {notifierOptions} from './config/notifier'
@@ -51,7 +58,9 @@ import {notifierOptions} from './config/notifier'
     CategoriesFormComponent,
     PositionsFormComponent,
     OrderCategoriesComponent,
-    OrderPositionsComponent
+    OrderPositionsComponent,
+    HistoryFilterComponent,
+    HistoryListComponent
   ],
   imports: [
     BrowserModule,
